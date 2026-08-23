@@ -97,6 +97,16 @@ class Board:
         white = sum(row.count(WHITE) for row in self.grid)
         return black, white
 
+    def clone(self):
+        """
+        Return an independent copy of this board. Needed for search (minimax):
+        trying a hypothetical move must never mutate the real game board, so
+        every node the search explores gets its own copy of the grid.
+        """
+        new_board = Board()
+        new_board.grid = [row[:] for row in self.grid]
+        return new_board
+
     def __str__(self):
         header = "  " + " ".join(str(c) for c in range(BOARD_SIZE))
         lines = [header]

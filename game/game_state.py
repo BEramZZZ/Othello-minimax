@@ -1,12 +1,16 @@
 """
 game_state.py
 
-Turn management, passing, and game-over detection, plus a console-playable
-human vs human loop. Still no Pygame, no AI -- this is the last thing we
-verify from the terminal before any graphics exist.
-
-Run it with:  python -m game.game_state   (from the project root)
+Step 12 additions on top of steps 1-10's turn/pass/game-over logic:
+  - Move history: a stack of (grid_before, player_before) snapshots,
+    pushed before every move or pass, so undo() can restore either.
+  - undo(): pops the most recent snapshot. One call = one ply reverted.
+  - to_dict()/from_dict(): plain-data form for JSON save/load. History is
+    NOT included -- a loaded game starts with a clean undo stack, since
+    there's nothing before the save point to go back to.
 """
+
+import copy
 
 from .board import Board, BLACK, WHITE, SYMBOLS
 
@@ -14,40 +18,62 @@ from .board import Board, BLACK, WHITE, SYMBOLS
 class GameState:
     def __init__(self):
         self.board = Board()
-        self.current_player = BLACK  # Black moves first in Othello
+        self.current_player = BLACK
+        self._history = []
 
     def legal_moves(self):
         return self.board.legal_moves(self.current_player)
 
     def is_game_over(self):
-        """
-        The game ends when NEITHER player has a legal move -- not just
-        when the current player is stuck (that only triggers a pass).
-        """
         black_has_move = bool(self.board.legal_moves(BLACK))
         white_has_move = bool(self.board.legal_moves(WHITE))
         return not black_has_move and not white_has_move
 
+    def _snapshot(self):
+        self._history.append((copy.deepcopy(self.board.grid), self.current_player))
+
     def play_move(self, row, col):
-        """Apply a move for the current player, then hand the turn over."""
+        self._snapshot()
         self.board.apply_move(row, col, self.current_player)
         self._advance_turn()
 
     def pass_turn(self):
-        """Current player has no legal moves; turn passes without playing."""
+        self._snapshot()
         self._advance_turn()
 
     def _advance_turn(self):
         self.current_player = self.board.opponent(self.current_player)
 
+    def can_undo(self):
+        return len(self._history) > 0
+
+    def undo(self):
+        """Revert exactly one ply (a move or a pass). Returns True if
+        something was undone, False if the history was already empty."""
+        if not self._history:
+            return False
+        grid, player = self._history.pop()
+        self.board.grid = grid
+        self.current_player = player
+        return True
+
     def winner(self):
-        """Return BLACK, WHITE, or None for a draw. Only meaningful once the game is over."""
         black, white = self.board.count()
         if black > white:
             return BLACK
         if white > black:
             return WHITE
         return None
+
+    def to_dict(self):
+        return {"grid": self.board.grid, "current_player": self.current_player}
+
+    @classmethod
+    def from_dict(cls, data):
+        state = cls()
+        state.board.grid = data["grid"]
+        state.current_player = data["current_player"]
+        return state
 
 
 def _prompt_move():
@@ -58,7 +84,6 @@ def _prompt_move():
 
 def play_console_game():
     state = GameState()
-
     while not state.is_game_over():
         print()
         print(state.board)
@@ -87,12 +112,8 @@ def play_console_game():
     print(state.board)
     black, white = state.board.count()
     print(f"\nGame over. Black: {black}, White: {white}")
-
     winner = state.winner()
-    if winner is None:
-        print("It's a draw.")
-    else:
-        print(f"{SYMBOLS[winner]} wins!")
+    print("It's a draw." if winner is None else f"{SYMBOLS[winner]} wins!")
 
 
 if __name__ == "__main__":

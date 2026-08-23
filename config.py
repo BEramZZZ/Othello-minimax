@@ -1,0 +1,62 @@
+"""
+config.py
+
+GUI overhaul: full color palette, a top bar (for turn indicator + Menu
+button), and separate board origin coordinates now that the board no
+longer starts right at the window edge.
+"""
+
+BOARD_SIZE = 8
+CELL_SIZE = 80
+MARGIN = 24
+TOP_BAR_HEIGHT = 54
+
+BOARD_ORIGIN_X = MARGIN
+BOARD_ORIGIN_Y = TOP_BAR_HEIGHT + MARGIN
+
+WINDOW_WIDTH = BOARD_SIZE * CELL_SIZE + 2 * MARGIN
+WINDOW_HEIGHT = TOP_BAR_HEIGHT + BOARD_SIZE * CELL_SIZE + 2 * MARGIN
+
+FPS = 30
+
+# Background / top bar
+COLOR_BACKGROUND = (18, 20, 22)
+COLOR_TOP_BAR = (26, 29, 31)
+
+# Board
+COLOR_BOARD_TOP = (12, 110, 62)
+COLOR_BOARD_BOTTOM = (7, 78, 44)
+COLOR_BOARD_BORDER = (92, 58, 30)
+COLOR_GRID_LINE = (6, 55, 32)
+
+# Discs
+COLOR_BLACK_DISC_TOP = (70, 70, 70)
+COLOR_BLACK_DISC_BOTTOM = (8, 8, 8)
+COLOR_WHITE_DISC_TOP = (255, 255, 255)
+COLOR_WHITE_DISC_BOTTOM = (205, 205, 205)
+
+# Accent / text
+COLOR_ACCENT = (212, 175, 55)
+COLOR_TEXT = (235, 235, 235)
+COLOR_TEXT_DIM = (170, 170, 170)
+
+# Buttons
+COLOR_BUTTON_BASE = (42, 46, 49)
+COLOR_BUTTON_HOVER = (64, 69, 73)
+COLOR_BUTTON_BORDER = COLOR_ACCENT
+
+# Menu background gradient
+COLOR_MENU_BG_TOP = (20, 22, 24)
+COLOR_MENU_BG_BOTTOM = (10, 30, 22)
+
+# Game-over overlay
+COLOR_OVERLAY = (0, 0, 0)
+OVERLAY_ALPHA = 190
+
+# Fonts
+FONT_TITLE_SIZE = 54
+FONT_SUBTITLE_SIZE = 20
+FONT_BUTTON_SIZE = 26
+FONT_TOPBAR_SIZE = 20
+FONT_BANNER_SIZE = 20
+FONT_GAMEOVER_SIZE = 42
