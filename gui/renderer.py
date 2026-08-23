@@ -1,12 +1,3 @@
-"""
-renderer.py
-
-GUI overhaul: wooden-framed board with a felt gradient, discs with a
-shadow + rim + highlight instead of flat circles, a top bar (turn
-indicator + mode label), and a styled game-over overlay. Still pure
-drawing only -- no game state is read here beyond what's passed in.
-"""
-
 import pygame
 
 from config import (

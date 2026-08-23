@@ -1,15 +1,3 @@
-"""
-game_state.py
-
-Step 12 additions on top of steps 1-10's turn/pass/game-over logic:
-  - Move history: a stack of (grid_before, player_before) snapshots,
-    pushed before every move or pass, so undo() can restore either.
-  - undo(): pops the most recent snapshot. One call = one ply reverted.
-  - to_dict()/from_dict(): plain-data form for JSON save/load. History is
-    NOT included -- a loaded game starts with a clean undo stack, since
-    there's nothing before the save point to go back to.
-"""
-
 import copy
 
 from .board import Board, BLACK, WHITE, SYMBOLS

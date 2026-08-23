@@ -1,12 +1,3 @@
-"""
-menu.py
-
-Step 12: adds "Continue Saved Game" as the first option on the mode-select
-screen, but only when a save actually exists. Picking it short-circuits
-mode/difficulty selection entirely -- main.py loads the real GameState
-and choice from disk instead of building a fresh game.
-"""
-
 import sys
 import pygame
 

@@ -1,28 +1,3 @@
-"""
-evaluation.py
-
-Heuristic evaluation functions for a board state.
-
-Step 5 had one heuristic: piece_count_eval. Step 9 adds a second, stronger
-one -- strategic_eval -- built from four weighted components:
-
-  - corners:   owning a corner is permanent (it can never be flipped), so
-               corner control is weighted far above anything else.
-  - mobility:  having more legal moves than your opponent constrains their
-               options and tends to force bad trades later; more valuable
-               in the midgame than raw disc count.
-  - stability: a rough proxy for "discs that can never be flipped" --
-               here, discs adjacent to a corner YOU own (since a corner
-               anchors a stable line outward from it).
-  - discs:     the step-5 piece-count difference, kept but weighted low --
-               it swings a lot turn to turn and is mostly noise except
-               near the very end of the game.
-
-piece_count_eval is kept as-is: nothing from step 5-8 breaks, and it's
-still useful as a baseline to A/B against strategic_eval if you want to
-confirm the new one is actually stronger.
-"""
-
 from game.board import BOARD_SIZE, EMPTY, BLACK, WHITE
 
 CORNERS = [(0, 0), (0, BOARD_SIZE - 1), (BOARD_SIZE - 1, 0), (BOARD_SIZE - 1, BOARD_SIZE - 1)]

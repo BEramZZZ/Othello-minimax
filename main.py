@@ -1,16 +1,3 @@
-"""
-main.py
-
-Step 12: adds Undo, Save, and a per-move timer to step 10's session loop,
-plus "Continue" (load) support from the menu.
-
-Undo is AI-aware: for human_vs_ai, one click of Undo reverts the human's
-last move AND the AI's automatic reply, landing back on the human's turn
--- not on the AI's turn, where it would just immediately move again.
-It works by popping GameState history until current_player belongs to a
-HumanPlayer again.
-"""
-
 import sys
 import pygame
 

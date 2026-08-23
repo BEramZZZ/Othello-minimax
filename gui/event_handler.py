@@ -1,10 +1,3 @@
-"""
-event_handler.py
-
-Updated for the GUI overhaul: the board no longer starts at (MARGIN,
-MARGIN) -- it starts below the top bar, at (BOARD_ORIGIN_X, BOARD_ORIGIN_Y).
-"""
-
 from config import BOARD_SIZE, CELL_SIZE, BOARD_ORIGIN_X, BOARD_ORIGIN_Y
 
 

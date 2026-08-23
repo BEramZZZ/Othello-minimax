@@ -1,19 +1,3 @@
-"""
-minimax.py
-
-Minimax search with alpha-beta pruning. Step 9's version already had
-alpha-beta -- this update adds MOVE ORDERING, which is what actually makes
-alpha-beta fast in practice. Pruning only cuts a branch once alpha/beta
-cross, and that happens sooner (more cutoffs) if strong moves are explored
-before weak ones. Without ordering, alpha-beta explores the same worst-case
-node count as no pruning at all if you get unlucky with move order.
-
-Ordering here is free -- no extra board evaluation needed -- just a
-priority based on square position: corners first (best), X-squares last
-(usually bad, since playing one before you own the corner hands it to
-the opponent), everything else in between.
-"""
-
 from game.board import BLACK, WHITE, BOARD_SIZE
 
 CORNERS = {(0, 0), (0, BOARD_SIZE - 1), (BOARD_SIZE - 1, 0), (BOARD_SIZE - 1, BOARD_SIZE - 1)}

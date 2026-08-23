@@ -1,11 +1,3 @@
-"""
-ui_helpers.py
-
-Drawing/interaction helpers shared by the menu and the in-game top bar,
-so both are styled from one place instead of drifting apart. Nothing
-here knows about Othello rules.
-"""
-
 import pygame
 
 

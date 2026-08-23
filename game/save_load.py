@@ -1,12 +1,3 @@
-"""
-save_load.py
-
-Single-slot JSON save/load. Saves board state, whose turn it is, and the
-mode/difficulty choice (needed to rebuild the same AIPlayer on load).
-Only one save exists at a time -- saving overwrites it, matching how
-"Continue" is presented on the menu (one slot, not a save browser).
-"""
-
 import json
 import os
 

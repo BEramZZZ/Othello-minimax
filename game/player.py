@@ -1,10 +1,3 @@
-"""
-player.py
-
-Step 9 change: AIPlayer now takes an eval_fn alongside depth, and passes
-it through to find_best_move. Nothing else about this class changes.
-"""
-
 from ai.minimax import find_best_move
 from ai.evaluation import piece_count_eval
 

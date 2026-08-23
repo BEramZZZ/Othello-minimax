@@ -1,11 +1,3 @@
-"""
-config.py
-
-GUI overhaul: full color palette, a top bar (for turn indicator + Menu
-button), and separate board origin coordinates now that the board no
-longer starts right at the window edge.
-"""
-
 BOARD_SIZE = 8
 CELL_SIZE = 80
 MARGIN = 24

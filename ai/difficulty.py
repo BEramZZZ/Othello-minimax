@@ -1,13 +1,3 @@
-"""
-difficulty.py
-
-Maps a difficulty name to a search depth AND an evaluation function.
-Easy/medium stay on the weak piece_count_eval (matches their shallow
-search -- no point pairing a strong heuristic with a search too shallow
-to exploit it). Hard switches to strategic_eval, where the deeper search
-actually has room to act on corners/mobility/stability.
-"""
-
 from ai.evaluation import piece_count_eval, strategic_eval
 
 DIFFICULTIES = {

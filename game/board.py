@@ -1,11 +1,3 @@
-"""
-board.py
-
-Board representation and rules for Othello (Reversi).
-No Pygame, no AI code here on purpose: this module has to work standalone
-from the terminal so we can test and trust it before any GUI or AI exists.
-"""
-
 BOARD_SIZE = 8
 
 EMPTY = 0
